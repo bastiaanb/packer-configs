@@ -1,0 +1,53 @@
+{
+    "builders": [{
+        "name": "centos-6.5-x86_64-base",
+        "type": "virtualbox-iso",
+        "format": "ova",
+        "virtualbox_version_file": ".vbox_version",
+        "headless": false,
+
+        "guest_os_type": "RedHat_64",
+        "disk_size": 40960,
+
+        "iso_url": "http://mirrors.kernel.org/centos/6.5/isos/x86_64/CentOS-6.5-x86_64-minimal.iso",
+        "iso_checksum": "f21a71e8e31df73297bdd1ccd4a64a36831284bd",
+        "iso_checksum_type": "sha1",
+
+        "boot_command": [
+            "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos-6.5-x86_64/ks.cfg<enter><wait>"
+        ],
+        "boot_wait": "12s",
+
+        "http_directory": "http",
+        "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+
+        "ssh_username": "vagrant",
+        "ssh_password": "vagrant",
+        "ssh_port": 22,
+        "ssh_wait_timeout": "30m",
+
+        "vboxmanage": [
+            ["modifyvm", "{{.Name}}", "--memory", "512"],
+            ["modifyvm", "{{.Name}}", "--cpus", "1"],
+            ["modifyvm", "{{.Name}}", "--nic1", "nat"],
+            ["modifyvm", "{{.Name}}", "--macaddress1", "080027723d37"]
+        ],
+
+        "vm_name": "centos-6.5-x86_64-base",
+
+        "shutdown_command": "echo 'vagrant'|sudo -S /sbin/halt -h -p"
+    }],
+    "post-processors": [{
+        "output": "build/centos-6.5-x86_64-base.box",
+        "type": "vagrant",
+        "keep_input_artifact": true
+    }],
+    "provisioners": [{
+        "type": "shell",
+        "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+        "scripts": [
+            "scripts/vboxguest.sh",
+            "scripts/compact.sh"
+        ]
+    }]
+}
