@@ -44,7 +44,6 @@
         "type": "shell",
         "execute_command": "{{.Vars}} bash '{{.Path}}'",
         "scripts": [
-            "scripts/upgrade.sh",
             "scripts/vboxguest.sh",
             "scripts/network.sh",
             "scripts/vagrant.sh",
