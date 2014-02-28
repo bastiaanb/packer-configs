@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 
-yum install kernel-devel gcc
+echo "Install EPEL repo"
+rpm -Uvh --force http://mirrors.kernel.org/fedora-epel/6/x86_64/epel-release-6-8.noarch.rpm
 
-wget -O install_salt.sh http://bootstrap.saltstack.org
-sh install_salt.sh -X -M git v2014.1.0
-rm -f bootstrap-salt.log
-rm -rf /tmp/git
+echo "Install salt-master and salt-minion"
+yum install -y salt-master salt-minion --enablerepo=epel-testing
 yum clean all
+
+echo "Disable salt-master service"
+chkconfig salt-master off
+
+echo "Disable salt-minion service"
+chkconfig salt-minion off
