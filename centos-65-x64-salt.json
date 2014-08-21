@@ -22,7 +22,7 @@
         "type": "shell",
         "execute_command": "{{.Vars}} bash '{{.Path}}'",
         "scripts": [
-            "scripts/salt.sh"
+            "scripts/centos/salt.sh"
         ]
     }]
 }
