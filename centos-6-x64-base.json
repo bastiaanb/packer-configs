@@ -1,6 +1,6 @@
 {
     "builders": [{
-        "name": "centos-65-x64-base",
+        "name": "centos-6-x64-base",
         "type": "virtualbox-iso",
         "format": "ova",
         "virtualbox_version_file": ".vbox_version",
@@ -9,12 +9,12 @@
         "guest_os_type": "RedHat_64",
         "disk_size": 40960,
 
-        "iso_url": "http://mirrors.kernel.org/centos/6.5/isos/x86_64/CentOS-6.5-x86_64-minimal.iso",
-        "iso_checksum": "f21a71e8e31df73297bdd1ccd4a64a36831284bd",
+        "iso_url": "http://mirrors.kernel.org/centos/6/isos/x86_64/CentOS-6.6-x86_64-minimal.iso",
+        "iso_checksum": "4ed6c56d365bd3ab12cd88b8a480f4a62e7c66d2",
         "iso_checksum_type": "sha1",
 
         "boot_command": [
-            "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos-65-x64/ks.cfg<enter><wait>"
+            "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos-6-x64/ks.cfg<enter><wait>"
         ],
         "boot_wait": "10s",
 
@@ -31,12 +31,12 @@
             ["modifyvm", "{{.Name}}", "--cpus", "1"]
         ],
 
-        "vm_name": "centos-65-x64-base",
+        "vm_name": "centos-6-x64-base",
 
         "shutdown_command": "/sbin/halt -h -p"
     }],
     "post-processors": [{
-        "output": "build/centos-65-x64-base.box",
+        "output": "build/centos-6-x64-base.box",
         "type": "vagrant",
         "keep_input_artifact": true
     }],
