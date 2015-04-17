@@ -44,7 +44,7 @@
         "type": "shell",
         "execute_command": "{{.Vars}} bash '{{.Path}}'",
         "scripts": [
-            "scripts/centos/extra-pkgs.sh",
+            "scripts/centos7/extra-pkgs.sh",
             "scripts/centos/network.sh",
             "scripts/centos/vboxguest.sh",
             "scripts/centos/vagrant.sh",

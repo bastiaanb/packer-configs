@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+echo "Install EPEL repo"
+rpm -Uvh --force https://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
+
+echo "Install extra packages"
+yum install -y dmidecode dkms
+
