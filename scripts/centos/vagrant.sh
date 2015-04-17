@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-groupadd vagrant -g 999
-useradd vagrant -g vagrant -G wheel -u 900
+groupadd vagrant
+useradd vagrant -g vagrant -G wheel
 echo "vagrant" | passwd --stdin vagrant
 echo "vagrant        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
 sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers
